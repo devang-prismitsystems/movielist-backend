@@ -36,6 +36,9 @@ app.use("/user", userRouter);
 app.get("/", (req: any, res: any) => {
     res.status(200).send("Welcome To Movies List");
 })
+app.get("/login", (req: any, res: any) => {
+    res.status(200).send("Login SuccessFull!");
+})
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
