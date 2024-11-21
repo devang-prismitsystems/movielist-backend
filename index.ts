@@ -12,7 +12,7 @@ const morgan = require('morgan');
 
 const corsOptions = {
     credentials: true,
-    origin: ['http://localhost:3000', 'https://movielist-frontend.vercel.app/']
+    origin: '*',
 };
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_NAME,
