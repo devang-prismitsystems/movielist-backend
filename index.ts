@@ -15,6 +15,7 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
+
 const corsOptions = {
     origin: 'https://movielist-frontend.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
@@ -24,20 +25,21 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 
-
 app.use(imageUpload());
 app.use(morgan("tiny"));
 app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ extended: true }));
+
+app.get("/login", (req, res) => {
+    res.status(200).send("Login SuccessFull!");
+});
+
+app.get("/", (req, res) => {
+    res.status(200).send("Welcome To Movies List");
+});
+
 app.use("/movie", movieRouter);
 app.use("/user", userRouter);
-
-app.get("/", (req: any, res: any) => {
-    res.status(200).send("Welcome To Movies List");
-})
-app.get("/login", (req: any, res: any) => {
-    res.status(200).send("Login SuccessFull!");
-})
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
