@@ -3,10 +3,6 @@ import movieRouter from './src/routes/moviesRoute';
 import userRouter from './src/routes/userRoute';
 const cloudinary = require('cloudinary').v2;
 const imageUpload = require('express-fileupload');
-// const router = express.Router();
-
-// const movieRouter = require("./src/routes/moviesRoute");
-// const userRouter = require("./src/routes/userRoute");
 
 const app = express();
 
