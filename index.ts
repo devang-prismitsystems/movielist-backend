@@ -10,11 +10,12 @@ const port = process.env.PORT;
 const cors = require('cors');
 const morgan = require('morgan');
 
-const corsOptions = {
-    credentials: true,
-    origin: ['https://movielist-frontend.vercel.app']
-};
-app.options('*', cors(corsOptions));
+// const corsOptions = {
+//     credentials: true,
+//     origin: ['https://movielist-frontend.vercel.app']
+// };
+// app.options('*', cors(corsOptions));
+app.use(cors())
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
@@ -26,7 +27,6 @@ app.use(morgan("tiny"));
 app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use('/upload', express.static('upload'));
-
 app.use("/movie", movieRouter);
 app.use("/user", userRouter);
 
