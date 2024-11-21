@@ -2,7 +2,7 @@
   "name": "movielist_backend",
   "version": "1.0.0",
   "description": "project for managing movies lists",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon index.ts",
     "build": "tsc",
