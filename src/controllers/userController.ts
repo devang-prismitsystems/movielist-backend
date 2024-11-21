@@ -54,6 +54,12 @@ const login = async (req: any, res: Response) => {
     try {
         const { email, password } = req.body;
         const user: any = await prisma.users.findFirst({ where: { email: email, password: md5(password) } });
+        if (!user) {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid email or password"
+            });
+        }
         const token = await Utils.encrypt(user.id.toString());
         // res.setHeader("Authorization", `Bearer ${token}`);
         res.status(200).json({
@@ -73,9 +79,10 @@ const login = async (req: any, res: Response) => {
 
 const userProfile = async (req: any, res: Response) => {
     try {
+        const { password, ...user } = req.user
         res.status(200).json({
             success: true,
-            data: req.user,
+            data: { ...user },
             message: "User fetched successfully"
         });
     } catch (error: any) {

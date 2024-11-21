@@ -67,9 +67,7 @@ const getList = async (req: any, res: Response) => {
 const createMovie = async (req: any, res: Response) => {
     try {
         const { title, publish_year } = req.body;
-        console.log('req.files: ', req.files);
         const { poster } = req.files;
-        console.log('poster: ', poster);
 
         if (!title && !publish_year && !poster) {
             return res.status(400).json({ success: false, error: "Title, publish year, and poster are required" });
