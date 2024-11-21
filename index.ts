@@ -29,7 +29,6 @@ app.use(imageUpload());
 app.use(morgan("tiny"));
 app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ extended: true }));
-app.use('/upload', express.static('upload'));
 app.use("/movie", movieRouter);
 app.use("/user", userRouter);
 
