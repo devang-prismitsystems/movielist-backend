@@ -136,4 +136,17 @@ const getMovieDetails = async (req: any, res: Response) => {
     }
 }
 
-module.exports = { getList, createMovie, updateMovie, getMovieDetails };
+const deleteMovie = async (req: any, res: Response) => {
+    try {
+        const { id } = req.query;
+        await prisma.movies.delete({
+            where: { id: +id }
+        });
+        res.status(200).json({ success: true, message: "Movie deleted successfully" });
+    } catch (error: any) {
+        console.log('error: ', error);
+        res.status(500).json({ success: false, error: error.message })
+    }
+}
+
+module.exports = { getList, createMovie, updateMovie, getMovieDetails, deleteMovie };
