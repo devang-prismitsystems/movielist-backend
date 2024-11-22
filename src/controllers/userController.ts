@@ -24,6 +24,17 @@ const signup = async (req: Request, res: Response) => {
                 message: "Email and password are required"
             });
         }
+        const existUser = await prisma.users.findUnique({
+            where: {
+                email: email
+            }
+        });
+        if (existUser) {
+            return res.status(400).json({
+                success: false,
+                message: "Email already exists"
+            });
+        }
         const createUser = await prisma.users.create({
             data: {
                 email,
